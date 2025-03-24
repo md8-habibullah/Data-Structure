@@ -1,61 +1,95 @@
 #include <iostream>
+#include <string>
+using namespace std;
 
-struct Node {
-    int data;
-    Node* next;
+class Node {
+  
+public:
+  int value;
+  Node* next;
+  
+
+  Node(){
+    this->value = 0;
+    this->next = nullptr;
+  };
+  
+  Node (int val){
+    this->value = val;
+    this->next = nullptr;
+  };
+  
 };
 
-class SinglyLinkedList {
+class Linkedlist {
+  Node* head;
 public:
-    SinglyLinkedList() : head(nullptr) {}
+  Linkedlist (){
+    head = nullptr;
+  };
+  
+  bool isEmpty (){
+    return head == nullptr;
+  };
+  
+  void addToFirst (int num){
+    
+    Node* newNode = new Node (num);
+    
+    if (isEmpty()){
+      head = newNode;
+      return;
+    } else {
+      newNode->next = this->head;
+      this->head = newNode;
+    };
+  };
+  
+  void addAtEnd(int value) {
+    Node* newNode = new Node(value);
 
-    void addAtBeginning(int value) {
-        Node* newNode = new Node();
-        newNode->data = value;
-        newNode->next = head;
+    if (head == nullptr) {
         head = newNode;
-    }
-
-    void addAtEnd(int value) {
-        Node* newNode = new Node();
-        newNode->data = value;
-        newNode->next = nullptr;
-
-        if (head == nullptr) {
-            head = newNode;
-        } else {
-            Node* temp = head;
-            while (temp->next != nullptr) {
-                temp = temp->next;
-            }
-            temp->next = newNode;
-        }
-    }
-
-    void printList() {
+    } else {
         Node* temp = head;
-        while (temp != nullptr) {
-            std::cout << temp->data;
-            if (temp->next != nullptr) {
-                std::cout << " -> ";
-            }
+        while (temp->next != nullptr) {
             temp = temp->next;
         }
-        std::cout << std::endl;
+        temp->next = newNode;
     }
+  };
+  
+  void showLinkedlist (){
+    Node* temp = head;
 
-private:
-    Node* head;
+    
+    while (temp != nullptr){
+      cout << temp->value << "\t";
+      temp = temp->next;
+    };
+  };
+  
+  
+  ~Linkedlist() {
+    Node* current = head;
+    while (current != nullptr) {
+        Node* next = current->next;
+        delete current;
+        current = next;
+    }
+}
+
 };
 
-int main() {
-    SinglyLinkedList list;
-    list.addAtBeginning(5);
-    list.addAtEnd(10);
-    list.addAtEnd(15);
-
-    std::cout << "Linked List: ";
-    list.printList();
-
+int main() 
+{
+    Linkedlist list;
+    list.addToFirst(645);
+    list.addToFirst(53);
+    list.addAtEnd(967);
+    
+    cout << "Display list" << endl;
+    
+    list.showLinkedlist();
     return 0;
 }
