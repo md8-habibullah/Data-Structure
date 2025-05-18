@@ -30,7 +30,7 @@ The assignments encompass a range of data structures and algorithms, including:
 * Trees (Binary Trees, BSTs)
 * Graphs (Adjacency Matrix/List, BFS, DFS)
 * Sorting Algorithms (Bubble, Selection, Insertion, Merge, Quick Sort)
-* Searching Algorithms (Linear, Binary Search)([Tilburg Science Hub][1])
+* Searching Algorithms (Linear, Binary Search)
 
 ---
 
